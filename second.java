@@ -7,18 +7,12 @@ class Product implements Serializable {
     private String name;
     private String category;
     private double price;
-
-
     public Product(int id, String name, String category, double price) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.price = price;
     }
-
-
-
-
     public void displayDetails() {
         System.out.println("Product ID: " + id);
         System.out.println("Name: " + name);
@@ -31,8 +25,6 @@ class Product implements Serializable {
         try {
             
             Product product = new Product(101, "Laptop", "Electronics", 1200.50);
-
-
             FileOutputStream fileOut = new FileOutputStream("product.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(product);
@@ -42,8 +34,6 @@ class Product implements Serializable {
         } catch (IOException i) {
             i.printStackTrace();
         }
-
-   
         try {
            
             FileInputStream fileIn = new FileInputStream("product.ser");
@@ -51,8 +41,6 @@ class Product implements Serializable {
             Product product = (Product) in.readObject();
             in.close();
             fileIn.close();
-
-
             System.out.println("\nDeserialized Product:");
             product.displayDetails();
         } catch (IOException | ClassNotFoundException e) {
